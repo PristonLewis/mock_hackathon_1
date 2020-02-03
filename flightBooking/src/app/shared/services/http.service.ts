@@ -9,7 +9,7 @@ export class HttpService {
   constructor(private httpClient: HttpClient) { }
  
   public getCompleteUrl(endpoint): string {
-    const baseUrl = 'http://localhost:9000';
+    const baseUrl = 'http://10.117.189.56:1989/';
     return baseUrl + endpoint;
   }
   public get(endpoint): Observable<any> {
