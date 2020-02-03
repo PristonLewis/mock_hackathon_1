@@ -1,1 +1,48 @@
-<p>home works!</p>
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFrom">From</label>
+            <select id="inputFrom" class="form-control">
+                <option *ngFor="let location of locations">
+                    {{location.locaionName }} - {{location.locaionCode}}
+                  </option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputTo">To</label>
+            <select id="inputTo" class="form-control">
+                <option *ngFor="let location of locations">
+                    {{location.locaionName}} - {{location.locaionCode}}
+                  </option>
+            </select>
+          </div>
+    </div>
+   
+    
+    <div class="form-row">
+     
+      <div class="form-group col-md-4">
+        <label for="inputState">Select Depart</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Select Return</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">Select class</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
