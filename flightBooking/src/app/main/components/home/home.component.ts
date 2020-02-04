@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Router } from '@angular/router';
 
 
 
@@ -13,16 +14,17 @@ export class HomeComponent implements OnInit {
   selectDate: Date;
   locations = [];
 
-  constructor(private HttpService: HttpService) { }
-
-  
+  constructor(private httpService: HttpService, private router: Router) { }
   ngOnInit() {
 
-    this.HttpService.get('/locations/getLocations').subscribe((data: any)=>{
+    this.httpService.get('/locations/getLocations').subscribe((data: any) => {
       console.log(data);
       this.locations = data.locations;
-    })  
-    
+    });
+  }
+
+  public navigate(): void {
+    this.router.navigate(['/booking']);
   }
 
 }

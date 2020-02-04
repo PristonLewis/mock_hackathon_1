@@ -5,11 +5,11 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardEService {
+export class AuthGuardService {
 
   constructor(public auth: AuthService, public router: Router) {}
   canActivate(): boolean {
-    if (true) {
+    if (!this.auth.isAuthenticated()) {
       this.router.navigate(['/login']);
       return false;
     }
