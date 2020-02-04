@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+declare var $: any;
 @Component({
   selector: 'app-booking-info',
   templateUrl: './booking-info.component.html',
@@ -13,11 +13,12 @@ export class BookingInfoComponent implements OnInit {
   public formDetails;
   public numbers = [];
   public flightTravelDetailsId: string;
+ 
 
   @ViewChildren('passengername') passengername: QueryList<ElementRef>;
   @ViewChildren('passengermob') passengermob: QueryList<ElementRef>;
 
-  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute) {
+  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
       
    }
   
@@ -46,6 +47,7 @@ export class BookingInfoComponent implements OnInit {
   }
 
   public payment(): void {
+    // this.flag=true;
     console.log('childrens', this.passengername);
     console.log('childrens', this.passengermob);
     const name = [];
@@ -71,9 +73,16 @@ export class BookingInfoComponent implements OnInit {
       passengers: payloadArr
     }
     this.httpService.post2('http://10.117.189.47:1989/ticketBooking', finalPayload).subscribe((data) => {
-      console.log('daaaa', data);
+      $('#exampleModal').modal('hide');
+      $('#exampleModal1').modal('show');
     });
     console.log('payloadArr', payloadArr);
   }
+
+  public ok() {
+    $('#exampleModal1').modal('hide');
+    this.router.navigate(['/']);
+  }
+  
 
 }
