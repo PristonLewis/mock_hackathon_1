@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { MainModule } from './main/main.module';
 import { SharedModule } from './shared/shared.module';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     AuthModule,
     MainModule,
-    SharedModule
+    SharedModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
