@@ -8,17 +8,28 @@ import {Location} from '@angular/common';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  public title = 'flightBooking';
-  public isSigned = false;
-  public username = '';
-  constructor(private authService: AuthService, private location: Location) { }
+  public title: string
+  public isSigned;
+  public username: string
+  constructor(private authService: AuthService, private location: Location) { 
+      
+       this.title = 'flightBooking';
+       this.isSigned = false;
+       this.username = '';
 
+  }
+
+  
   ngOnInit(): void {
+
     this.authService.subject.subscribe((data: string) => {
         this.isSigned = (localStorage.getItem('userid') !== '');
         this.username = localStorage.getItem('username');
     });
   }
+  /**
+   *  signout details
+   */
   public signout(): void {
     localStorage.setItem('userid', '');
     localStorage.setItem('username', '');

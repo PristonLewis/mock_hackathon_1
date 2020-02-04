@@ -13,14 +13,23 @@ import {CalendarModule} from 'primeng/calendar';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  public value: Date;
-  public locations = [];
-  public searchResults = [];
-  public today: number = Date.now();
+  public value;
+  public locations;
+  public searchResults;
+  public today: number;
 
-  constructor(private httpService: HttpService, private router: Router, private authService: AuthService) { }
+  constructor(private httpService: HttpService, private router: Router, private authService: AuthService) { 
+
+      this.value = Date;
+      this.locations = [];
+      this.searchResults = [];
+      this. today = Date.now();
+  }
   ngOnInit() {
 
+     /**
+      *  Getting datas like source and destination detail about the flight and stored in service 
+      */
     this.httpService.get('/locations/getLocations').subscribe((data: any) => {
       this.locations = data.locations;
     });
@@ -34,6 +43,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * FlightTravelDetails  
+   */
   public search(formValue): void {
     const payload = formValue.value;
     this.httpService.get(`/search/searchresults?fromLocation=${payload.locationFrom.split('- ')[1].trim()}&toLocation=${payload.locationTo.split('- ')[1].trim()}&travelDate=${payload.depdate}`).subscribe((data: any) => {

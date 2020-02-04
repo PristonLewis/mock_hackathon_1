@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BookingInfoComponent implements OnInit {
 
-  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute) { }
   public flightDataInd;
   public formDetails;
   public numbers = [];
@@ -17,6 +16,11 @@ export class BookingInfoComponent implements OnInit {
 
   @ViewChildren('passengername') passengername: QueryList<ElementRef>;
   @ViewChildren('passengermob') passengermob: QueryList<ElementRef>;
+
+  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute) {
+      
+   }
+  
 
   ngOnInit() {
     const flightData = this.httpService.getFlightData();
