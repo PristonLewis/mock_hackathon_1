@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './shared/services/auth.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ export class AppComponent implements OnInit {
   public title = 'flightBooking';
   public isSigned = false;
   public username = '';
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private location: Location) { }
 
   ngOnInit(): void {
     this.authService.subject.subscribe((data: string) => {
@@ -22,5 +23,9 @@ export class AppComponent implements OnInit {
     localStorage.setItem('userid', '');
     localStorage.setItem('username', '');
     this.authService.changeAuth('');
+  }
+
+  public back(): void {
+    this.location.back();
   }
 }

@@ -26,11 +26,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  public navigate(): void {
+  public navigate(id): void {
     if (this.authService.isAuthenticated()) {
-      this.router.navigate(['booking/1']);
+      this.router.navigate(['booking/' + id]);
     } else {
-      this.router.navigate(['login/1']);
+      this.router.navigate(['login/' + id]);
     }
   }
 

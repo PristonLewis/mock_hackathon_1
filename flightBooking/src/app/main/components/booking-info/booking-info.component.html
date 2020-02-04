@@ -1,4 +1,6 @@
-<div class="container">
+
+<div class="container">  
+
     <div class="row">
         <div class="col-md-8">
             <ul class="list-group">
@@ -70,28 +72,20 @@
                 <li class="list-group-item active">Passenger Details</li>
                 <li class="list-group-item">                    
                     <form>
-                        <h6 class="p-1">Passenger 1</h6>
+                      <div *ngFor="let passenger of numbers">  
+                        <h6 class="p-1">Passenger</h6>
                         <div class="form-row">
                           <div class="col">
-                            <input type="text" class="form-control" id="passengername" placeholder="Passenger Name" name="email">
+                            <input type="text" class="form-control" #passengername id="passengername" placeholder="Passenger Name" name="email">
                           </div>
                           <div class="col">
-                            <input type="text" class="form-control" placeholder="Passenger Age" name="passengerage">
+                            <input type="text" class="form-control" #passengermob placeholder="Passenger Mob" name="passengermob">
                           </div>
                         </div>
+                        </div >
                       </form>
                       <hr>
-                      <form>
-                        <h6 class="p-1">Passenger 2</h6>
-                        <div class="form-row">
-                          <div class="col">
-                            <input type="text" class="form-control" id="passengername2" placeholder="Passenger Name" name="email">
-                          </div>
-                          <div class="col">
-                            <input type="text" class="form-control" placeholder="Passenger Age" name="passengerage2">
-                          </div>
-                        </div>
-                      </form>                      
+                                       
                 </li>
             </ul>
         </div>
@@ -102,10 +96,30 @@
                     <input type="radio"> <small class="radio">Google Pay</small>
                     <input type="radio"> <small class="radio">Net Banking</small>
                     <input type="radio"> <small class="radio">Amazon Pay</small><br><br>
-                    <button type="button" class="btn btn-outline-primary">Proceed To Payment</button>
+                    <button type="button"  class="btn btn-outline-primary"  data-toggle="modal" data-target="#exampleModal">Proceed To Payment</button>
                 </li>
             </ul>
         </div>
 
     </div>                
 </div>
+
+<div *ngIf="flag" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to proceed with the payment.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="payment()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

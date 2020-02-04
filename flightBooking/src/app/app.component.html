@@ -21,6 +21,7 @@
       <a *ngIf="!isSigned" routerLink="/login" routerLinkActive="active" class="nav-link" href="#" tabindex="-1" aria-disabled="true">Login</a>
       <a *ngIf="isSigned" class="nav-link" href="#" tabindex="-1" aria-disabled="true" (click)="signout()">Signout</a>
       <a *ngIf="isSigned" class="nav-link" href="#" tabindex="-1" aria-disabled="true">{{username}}</a>
+      <a (click)="back()">Back</a>
 
     </form>
   </div>

@@ -11,6 +11,7 @@ export class HttpService {
   public flightData;
   public getCompleteUrl(endpoint): string {
     const baseUrl = 'http://10.117.189.56:1989/';
+
     return baseUrl + endpoint;
   }
   public get(endpoint): Observable<any> {
@@ -18,6 +19,11 @@ export class HttpService {
   }
   public post(endpoint, payload): Observable<any> {
     return this.httpClient.post(this.getCompleteUrl(endpoint), payload);
+  }
+
+  public post2(endpoint, payload): Observable<any> {
+      return this.httpClient.post(endpoint, payload);
+    
   }
 
   public setFlightData(flightData): void {
