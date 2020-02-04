@@ -11,14 +11,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   constructor(private httpService: HttpService, private authService: AuthService, private router: Router, 
-    private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) { }
   public value: Date;
   public errFlag = false;
-  public flightId = undefined;
+
   ngOnInit() {
-    this.activatedRoute.params.subscribe((route: any) => {
-      this.flightId = route.id;
-    });
+
   }
   public login(loginForm): void {
     this.errFlag = false;
@@ -28,12 +26,14 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('userid', data.userId);
       localStorage.setItem('username', loginForm.value.uName);
       this.authService.changeAuth(loginForm.value.uName);
-      if (this.flightId) {
-        this.router.navigate(['/booking/' + this.flightId]);
-      } else {
-        this.router.navigate(['/']);
-      }
-
+      // if (this.flightId) {
+      this.activatedRoute.params.subscribe((route: any) => {
+          if (route.id) {
+            this.router.navigate(['/booking/' + route.id]);
+          } else {
+            this.router.navigate(['/']);
+          }
+        });
     }, (exception) => {
       this.errFlag = true;
       console.log('exception', exception);

@@ -20,7 +20,7 @@
       <a *ngIf="!isSigned" routerLink="/register" routerLinkActive="active" class="nav-link" href="#" tabindex="-1" aria-disabled="true">Sign up</a>
       <a *ngIf="!isSigned" routerLink="/login" routerLinkActive="active" class="nav-link" href="#" tabindex="-1" aria-disabled="true">Login</a>
       <a *ngIf="isSigned" class="nav-link" href="#" tabindex="-1" aria-disabled="true" (click)="signout()">Signout</a>
-      <a *ngIf="isSigned" class="nav-link" href="#" tabindex="-1" aria-disabled="true">{{Username}}</a>
+      <a *ngIf="isSigned" class="nav-link" href="#" tabindex="-1" aria-disabled="true">{{username}}</a>
 
     </form>
   </div>

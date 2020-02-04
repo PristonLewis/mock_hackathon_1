@@ -21,5 +21,6 @@ export class AppComponent implements OnInit {
   public signout(): void {
     localStorage.setItem('userid', '');
     localStorage.setItem('username', '');
+    this.authService.changeAuth('');
   }
 }
