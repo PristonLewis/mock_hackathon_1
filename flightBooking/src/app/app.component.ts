@@ -18,12 +18,17 @@ export class AppComponent implements OnInit {
 
   }
 
+  
   ngOnInit(): void {
+
     this.authService.subject.subscribe((data: string) => {
         this.isSigned = (localStorage.getItem('userid') !== '');
         this.username = localStorage.getItem('username');
     });
   }
+  /**
+   *  signout details
+   */
   public signout(): void {
     localStorage.setItem('userid', '');
     localStorage.setItem('username', '');

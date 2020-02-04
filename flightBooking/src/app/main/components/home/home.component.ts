@@ -27,11 +27,16 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
 
+     /**
+      *  Getting datas like source and destination detail about the flight and stored in service 
+      */
     this.httpService.get('/locations/getLocations').subscribe((data: any) => {
       this.locations = data.locations;
     });
   }
-
+    /**
+     *  if user authorzation is matched navigating to booking page or we are redirecting to login page 
+     */
   public navigate(): void {
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['booking/1']);
@@ -40,6 +45,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * FlightTravelDetails  
+   */
   public search(formValue): void {
     const payload = formValue.value;
     this.httpService.get(`/search/searchresults?fromLocation=${payload.locationFrom.split('- ')[1].trim()}&toLocation=${payload.locationTo.split('- ')[1].trim()}&travelDate=${payload.depdate}`).subscribe((data: any) => {

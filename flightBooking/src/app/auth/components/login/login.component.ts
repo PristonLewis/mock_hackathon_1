@@ -25,6 +25,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
   }
+  /**
+   *  Getting  username and password to login and stored in localstorage
+   *  Getting values from loginform
+   *  **/
   public login(loginForm): void {
     this.errFlag = false;
     this.httpService.post('users/login', loginForm.value).subscribe((data) => {
