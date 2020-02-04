@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,14 +9,14 @@ import { HttpService } from 'src/app/shared/services/http.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
   }
   public register(formValue): void {
     console.log('formValue', formValue.value);
     this.httpService.post('users/register', formValue.value).subscribe((data) => {
-      console.log('data', data);
+      this.router.navigate(['/login']);
     });
   }
 
