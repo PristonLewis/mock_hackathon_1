@@ -7,7 +7,7 @@ import {HttpClient} from '@angular/common/http';
 export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
- 
+  
   public getCompleteUrl(endpoint): string {
     const baseUrl = 'http://10.117.189.56:1989/';
     return baseUrl + endpoint;
