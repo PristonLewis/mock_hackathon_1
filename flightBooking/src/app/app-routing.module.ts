@@ -8,7 +8,7 @@ import { PaymentComponent } from './main/components/payment/payment.component';
 import { SearchResultComponent } from './main/components/search-result/search-result.component';
 
 
-const routes: Routes = [{path: '', component: HomeComponent},
+const routes: Routes = [{path: 'home', component: HomeComponent},
 {path: 'login', component: LoginComponent},
 {path: 'register', component: RegisterComponent},
 {path: 'booking', component: BookingInfoComponent},

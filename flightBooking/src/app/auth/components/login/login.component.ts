@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
     console.log(loginForm.value);
     this.httpService.post('users/login', loginForm.value).subscribe((data) => {
       console.log('login', data);
+      localStorage.setItem('userid', data.userId);
+      localStorage.setItem('username', loginForm.value.uName);
     }, (exception) => {
       console.log('exception', exception);
     });
