@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BookingInfoComponent } from 'src/app/main/components/booking-info/booking-info.component';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,16 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  public errFlag 
+
   constructor(private httpService: HttpService, private authService: AuthService, private router: Router, 
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) {
+                 // public value: Date;
+  
+                 this.errFlag = false;
+               }
   // public value: Date;
-  public errFlag: boolean = false;
+ 
 
   ngOnInit() {
 

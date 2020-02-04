@@ -13,12 +13,18 @@ import {CalendarModule} from 'primeng/calendar';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  public value: Date;
-  public locations = [];
-  public searchResults = [];
-  public today: number = Date.now();
+  public value;
+  public locations;
+  public searchResults;
+  public today: number;
 
-  constructor(private httpService: HttpService, private router: Router, private authService: AuthService) { }
+  constructor(private httpService: HttpService, private router: Router, private authService: AuthService) { 
+
+      this.value = Date;
+      this.locations = [];
+      this.searchResults = [];
+      this. today = Date.now();
+  }
   ngOnInit() {
 
     this.httpService.get('/locations/getLocations').subscribe((data: any) => {
