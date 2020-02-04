@@ -9,6 +9,7 @@ export class AuthService {
   constructor() { }
   public  subject = new Subject<string>();
   public isAuthenticated(): boolean {
+    console.log(localStorage.getItem('userid') !== '');
     return localStorage.getItem('userid') !== '';
   }
 
