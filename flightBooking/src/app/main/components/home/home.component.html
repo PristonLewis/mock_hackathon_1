@@ -5,11 +5,11 @@
       <p>Book Domestic and International flights</p>
     </div>
   </div>
-<form>
+  <form #f="ngForm" (ngSubmit)="search(f)" novalidate>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputFrom">From</label>
-            <select id="inputFrom" class="form-control">
+            <select id="inputFrom"  ngModel  #locationFrom="ngModel"  name="locationFrom" class="form-control">
                 <option *ngFor="let location of locations">
                     {{location.locaionName }} - {{location.locaionCode}}
                   </option>
@@ -17,7 +17,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="inputTo">To</label>
-            <select id="inputTo" class="form-control">
+            <select id="inputTo" name="locationTo"  ngModel  #locationTo="ngModel" class="form-control">
                 <option *ngFor="let location of locations">
                     {{location.locaionName}} - {{location.locaionCode}}
                   </option>
@@ -29,27 +29,39 @@
     <div class="form-row">
      
       <div class="form-group col-md-4">
-        <label for="inputState">Select Depart</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
+        <label for="inputState"> Dept Date</label>
+        <div class="form-group col-md-4">
+          
+          <p-calendar  [(ngModel)]="value"></p-calendar>
+        </div>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputState">Select Return</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
-        </select>
+        <label for="inputState">Return Date</label>
+        <div class="form-group col-md-4">
+        
+          <p-calendar [(ngModel)]="value"></p-calendar>
+        </div>
       </div>
       <div class="form-group col-md-4">
-        <label for="inputState">Select class</label>
-        <select id="inputState" class="form-control">
-          <option selected>Choose...</option>
-          <option>...</option>
+        <label for="inputclass">Class</label>
+        <select id="inputclass" ngModel  #locationclass="ngModel"  name="locationclass" class="form-control">
+            <option> Economy              
+              </option>
+              <option> First             
+              </option>
+              <option> Business            
+              </option>
         </select>
       </div>
+     
     </div>
+    <div class="form-label-group col-md-4">
+      <label for="inputEmail">No of passenger</label>
+       <input type="text" name="upassenger" id="passenger" ngModel required #passenger="ngModel" class="form-control" placeholder="no of passenger">
+      
+     </div>
+
+    <br>
 
     <button type="submit" class="btn btn-primary">Search</button>
     <button type="submit" class="btn btn-primary" (click)="navigate()">Book</button>

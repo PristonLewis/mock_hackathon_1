@@ -4,6 +4,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
+import {CalendarModule} from 'primeng/calendar';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  selectDate: Date;
+  value: Date;
   locations = [];
 
   constructor(private httpService: HttpService, private router: Router, private authService: AuthService) { }
@@ -32,6 +33,13 @@ export class HomeComponent implements OnInit {
       console.log('there')
       this.router.navigate(['login/1']);
     }
+  }
+  
+  public search(formValue): void {
+    console.log('formValue', formValue.value);
+    this.httpService.post('users/', formValue.value).subscribe((data) => {
+      console.log('data', data);
+    });
   }
 
 }
