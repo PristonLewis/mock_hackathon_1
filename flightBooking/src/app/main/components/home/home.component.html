@@ -9,15 +9,17 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="inputFrom">From</label>
-            <select id="inputFrom"  ngModel  #locationFrom="ngModel"  name="locationFrom" class="form-control">
-                <option *ngFor="let location of locations">
+            <select id="inputFrom"   [(ngModel)]="selectedValue"  #locationFrom="ngModel"  name="locationFrom" class="form-control">
+              <option>Select</option>  
+              <option *ngFor="let location of locations" >
                     {{location.locaionName }} - {{location.locaionCode}}
-                  </option>
+                </option>
             </select>
           </div>
           <div class="form-group col-md-6">
             <label for="inputTo">To</label>
-            <select id="inputTo" name="locationTo"  ngModel  #locationTo="ngModel" class="form-control">
+            <select id="inputTo" name="locationTo"   [(ngModel)]="selectedValue2"  #locationTo="ngModel" class="form-control">
+              <option>Select</option>
                 <option *ngFor="let location of locations">
                     {{location.locaionName}} - {{location.locaionCode}}
                   </option>
@@ -28,20 +30,16 @@
     
     <div class="form-row">
      
-      <div class="form-group col-md-3">
-        <label for="inputState"> Dept Date</label>
-        <div class="form-group col-md-3">
-          
-          <p-calendar  [(ngModel)]="value"></p-calendar>
-        </div>
-      </div>
-      <div class="form-group col-md-3">
-        <label for="inputState">Return Date</label>
-        <div class="form-group col-md-3">
+      <div class="form-label-group col-md-3">
+        <label for="inputEmail">Departure Date</label>
+         <input type="date" name="depdate" id="fromdate" ngModel required #deptdate="ngModel" class="form-control">
         
-          <p-calendar [(ngModel)]="value"></p-calendar>
-        </div>
-      </div>
+       </div> 
+       <div class="form-label-group col-md-3">
+        <label for="inputEmail">Return Date</label>
+         <input type="date" name="retdate" id="todate" ngModel required #retdate="ngModel" class="form-control">
+        
+       </div> 
       <div class="form-group col-md-3">
         <label for="inputclass">Class</label>
         <select id="inputclass" ngModel  #locationclass="ngModel"  name="locationclass" class="form-control">
@@ -84,35 +82,39 @@
                         <span>asc &nbsp;</span>
                         <span>dsc</span>
                       </div> 
-                      <div class="col-md-3">
+                      <div class="col-md-2">
                         <span>asc &nbsp;</span>
                         <span>dsc</span>
                       </div> 
-
+                      <div class="col-md-2" >
+                          <input type="text" style="width:80px" placeholder="Search">
+                      </div> 
                   </div>
               </li>
-              <li class="list-group-item">
+
+              <li class="list-group-item" *ngFor="let details of searchResults">
                   <div class="row">
                       <div class="col-md-2">
-                          <p>Air Asia</p>
+                          <p>{{details.flightName}}</p>
                       </div>
                       <div class="col-md-3">
-                          <h3>8:20 PM</h3>
-                          <p>Arrival time</p>
+                          <h3>{{details.departureDateTime | date:'h:mm a'}}</h3>
+                          <p>Arrival time </p>
                       </div>
+ 
                       <div class="col-md-3">
-                          <p>-------------------</p>
-                          <p class="p-2"> Duration: 1 hr</p>
-                      </div> 
-                      <div class="col-md-3">
-                          <h3>9:20 PM</h3>
+                          <h3>{{details.arrivalDateTime | date:'h:mm a'}}</h3>
                           <p>Departure time</p>
                       </div>
+                      <div class="col-md-3">
+                        <h3 style="color:green">{{details.economyClassPrice}}</h3>
+                        <p>Price</p>
+                    </div>
                       <div class="col-md-1">
                         <button type="submit" class="btn btn-primary" (click)="navigate()">Book</button>
                       </div>
                   </div>
-                  <hr>      
+    
               </li>
 
           </ul>

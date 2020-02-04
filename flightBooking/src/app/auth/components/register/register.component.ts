@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   public register(formValue): void {
-    console.log('formValue', formValue.value);
     this.httpService.post('users/register', formValue.value).subscribe((data) => {
       this.router.navigate(['/login']);
     });

@@ -3,23 +3,24 @@
         <div class="col-md-8">
             <ul class="list-group">
                 <li class="list-group-item active">Itinerary</li>
-                <li class="list-group-item">
+                <li class="list-group-item" *ngFor="let detail of flightDataInd">
                     <div class="row">
                         <div class="col-md-2">
-                            <p>Air Asia</p>
+                            <p>{{detail.flightName}}</p>
                         </div>
                         <div class="col-md-3">
-                            <h3>8:20 PM</h3>
-                            <p> time</p>
+                            <h3>{{detail.departureDateTime | date:'h:mm a'}}</h3>
+                            <p>Arrival time </p>
                         </div>
+   
                         <div class="col-md-3">
-                            <p>-------------------</p>
-                            <p class="p-2"> Duration: 1 hr</p>
-                        </div> 
-                        <div class="col-md-3">
-                            <h3>9:20 PM</h3>
+                            <h3>{{detail.arrivalDateTime | date:'h:mm a'}}</h3>
                             <p>Departure time</p>
                         </div>
+                        <div class="col-md-3">
+                          <h3 style="color:green">{{detail.economyClassPrice}}</h3>
+                          <p>Price</p>
+                      </div>
                     </div>
                     <hr>
                     <div class="row">
@@ -51,11 +52,11 @@
         <div class="col-md-4">
             <ul class="list-group">
                 <li class="list-group-item active">Fare Summary</li>
-                <li class="list-group-item">
-                    <p>Base Summary : Rs 1234</p><hr>
-                    <p>Fee & Surcharges : Rs 1234</p><hr>
-                    <p>Other Services : Rs 1234</p><hr>
-                    <h3>Total Charge : Rs 1234</h3>
+                <li class="list-group-item" *ngFor="let detail of flightDataInd">
+                    <p>Base Summary : Rs {{detail.economyClassPrice}}</p><hr>
+                    <p>Fee & Surcharges : Rs 2455</p><hr>
+                    <p>Other Services : Rs 766</p><hr>
+                    <h3>Total Charge : {{detail.economyClassPrice + 2455 + 766}}</h3>
                 </li>
 
             </ul>
@@ -84,10 +85,10 @@
                         <h6 class="p-1">Passenger 2</h6>
                         <div class="form-row">
                           <div class="col">
-                            <input type="text" class="form-control" id="passengername" placeholder="Passenger Name" name="email">
+                            <input type="text" class="form-control" id="passengername2" placeholder="Passenger Name" name="email">
                           </div>
                           <div class="col">
-                            <input type="text" class="form-control" placeholder="Passenger Age" name="passengerage">
+                            <input type="text" class="form-control" placeholder="Passenger Age" name="passengerage2">
                           </div>
                         </div>
                       </form>                      

@@ -12,17 +12,15 @@ export class LoginComponent implements OnInit {
 
   constructor(private httpService: HttpService, private authService: AuthService, private router: Router, 
               private activatedRoute: ActivatedRoute) { }
-  public value: Date;
-  public errFlag = false;
+  // public value: Date;
+  public errFlag: boolean = false;
 
   ngOnInit() {
 
   }
   public login(loginForm): void {
     this.errFlag = false;
-    console.log(loginForm.value);
     this.httpService.post('users/login', loginForm.value).subscribe((data) => {
-      console.log('login', data);
       localStorage.setItem('userid', data.userId);
       localStorage.setItem('username', loginForm.value.uName);
       this.authService.changeAuth(loginForm.value.uName);

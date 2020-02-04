@@ -7,7 +7,8 @@ import {HttpClient} from '@angular/common/http';
 export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
-  
+
+  public flightData;
   public getCompleteUrl(endpoint): string {
     const baseUrl = 'http://10.117.189.56:1989/';
     return baseUrl + endpoint;
@@ -18,4 +19,13 @@ export class HttpService {
   public post(endpoint, payload): Observable<any> {
     return this.httpClient.post(this.getCompleteUrl(endpoint), payload);
   }
+
+  public setFlightData(flightData): void {
+    this.flightData = flightData;
+  }
+
+  public getFlightData(): any{
+    return this.flightData;
+  }
+
 }

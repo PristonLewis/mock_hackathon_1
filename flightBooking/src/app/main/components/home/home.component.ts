@@ -13,33 +13,38 @@ import {CalendarModule} from 'primeng/calendar';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  value: Date;
-  locations = [];
+  public value: Date;
+  public locations = [];
+  public searchResults = [];
+  public today: number = Date.now();
 
   constructor(private httpService: HttpService, private router: Router, private authService: AuthService) { }
   ngOnInit() {
 
     this.httpService.get('/locations/getLocations').subscribe((data: any) => {
-      console.log(data);
       this.locations = data.locations;
     });
   }
 
   public navigate(): void {
     if (this.authService.isAuthenticated()) {
-      console.log('here');
       this.router.navigate(['booking/1']);
     } else {
-      console.log('there')
       this.router.navigate(['login/1']);
     }
   }
-  
+
   public search(formValue): void {
-    console.log('formValue', formValue.value);
-    this.httpService.post('users/', formValue.value).subscribe((data) => {
-      console.log('data', data);
+    const payload = formValue.value;
+    this.httpService.get(`/search/searchresults?fromLocation=${payload.locationFrom.split('- ')[1].trim()}&toLocation=${payload.locationTo.split('- ')[1].trim()}&travelDate=${payload.depdate}`).subscribe((data: any) => {
+      this.searchResults = data.flightTravelDetails;
+      const dataToSave = {
+        searchResults: this.searchResults,
+        formDetails: formValue.value
+      };
+      this.httpService.setFlightData(dataToSave);
     });
+
   }
 
 }
